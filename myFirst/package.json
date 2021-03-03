@@ -1,0 +1,11 @@
+{
+  "name": "myFirst",
+  "version": "1.0.0",
+  "description": "My first Typescript project. Learning the basics mainly.",
+  "main": "index.js",
+  "author": "mE",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}
