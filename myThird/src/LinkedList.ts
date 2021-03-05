@@ -60,4 +60,30 @@ export class LinkedList {
 
     throw new Error('Index is out of bounds');
   }
+
+  compare(leftIndex: number, rightIndex: number): boolean {
+    if (!this.head) {
+      throw new Error('No node.');
+    }
+
+    return this.at(leftIndex) > this.at(rightIndex);
+  }
+
+  swap(leftIndex: number, rightIndex: number): void {
+    const leftHand = this.at(leftIndex);
+
+    this.at(leftIndex).data = this.at(rightIndex).data;
+    this.at(rightIndex).data = leftHand.data;
+  }
+
+  print(): void {
+    if (!this.head) return;
+
+    let node: LinkNode | null = this.head;
+
+    while (node) {
+      console.log(node.data);
+      node = node.next;
+    }
+  }
 }
