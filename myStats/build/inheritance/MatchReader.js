@@ -17,7 +17,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MatchReader = void 0;
 var CscFileReader_1 = require("./CscFileReader");
-var utils_1 = require("./utils");
+var utils_1 = require("../utils");
 var MatchReader = /** @class */ (function (_super) {
     __extends(MatchReader, _super);
     function MatchReader() {

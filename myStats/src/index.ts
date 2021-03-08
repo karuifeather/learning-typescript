@@ -1,23 +1,12 @@
-import { CsvFileReader } from './CsvFileReader';
 import { MatchReader } from './MatchReader';
-import { MatchResult } from './MatchResult';
+import { Summary } from './Summary';
 
-const csvFileReader = new CsvFileReader('football.csv');
-
-const matchReader = new MatchReader(csvFileReader);
-matchReader.load();
-
+// Inheritance be like
 // const reader = new MatchReader('football.csv');
 // reader.read();
 
-const { matches } = matchReader;
+const matchReader = MatchReader.buildTheReader('football.csv');
+const summary = Summary.prepForConsole('Man United');
 
-let manUnitedWins = 0;
-for (let match of matches) {
-  if (match[1] === 'Man United' && match[5] === MatchResult.HomeWin)
-    manUnitedWins++;
-  else if (match[2] === 'Man United' && match[5] === MatchResult.AwayWin)
-    manUnitedWins++;
-}
-
-console.log('Total wins: ', manUnitedWins);
+matchReader.load();
+summary.buildAndPrintReport(matchReader.matches);
