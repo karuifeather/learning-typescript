@@ -1,29 +1,9 @@
 {
   "users": [
     {
-      "name": "Aashaya",
-      "age": 20,
+      "name": "changed name",
+      "age": 20484,
       "id": 1
-    },
-    {
-      "name": "new",
-      "age": 20,
-      "id": 2
-    },
-    {
-      "name": "new",
-      "age": 20,
-      "id": 3
-    },
-    {
-      "name": "new",
-      "age": 20,
-      "id": 4
-    },
-    {
-      "name": "new",
-      "age": 20,
-      "id": 5
     }
   ]
 }
