@@ -8,14 +8,14 @@ export class ApiSync<T extends HasId> {
   constructor(private rootUrl: string) {}
 
   fetch(id: number): AxiosPromise {
-    return axios.get(`${this.rootUrl}/users/${id}`);
+    return axios.get(`${this.rootUrl}/${id}`);
   }
 
   save(data: T): AxiosPromise {
     const { id } = data;
 
     if (id) {
-      return axios.patch(`${this.rootUrl}/users/${id}`, data);
+      return axios.patch(`${this.rootUrl}/${id}`, data);
     } else {
       return axios.post(`${this.rootUrl}/`, data);
     }
