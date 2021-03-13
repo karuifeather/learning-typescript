@@ -1,27 +1,42 @@
+import { User } from '../models/User';
+
 export class UserForm {
-  constructor(public parent: Element) {}
+  constructor(public parent: Element, public model: User) {
+    this.model.on('change', (): void => {
+      this.render();
+    });
+  }
 
   eventsMap(): { [key: string]: () => void } {
     return {
-      'click:button': this.onButtonClick,
-      'mouseenter:h1': this.onHeaderHover,
+      'click:.set-age': this.onSetAge,
+      'click:.set-name': this.onSetName,
     };
   }
 
-  onHeaderHover(): void {
-    console.log('H1 was hovered');
-  }
+  onSetName = (): void => {
+    const input = this.parent.querySelector('input');
 
-  onButtonClick(): void {
-    console.log('Button was clicked!!');
-  }
+    if (input) {
+      const name = input.value;
+
+      this.model.set({ name });
+    }
+  };
+
+  onSetAge = (): void => {
+    this.model.setRandomAge();
+  };
 
   template(): string {
     return `
     <div>
       <h1>User Form</h1>
+      <h2>Name: ${this.model.get('name')}</h2>
+      <h2>Age: ${this.model.get('age')}</h2>
       <input/>
-      <button>Click</button>
+      <button class="set-name">Change Name</button>
+      <button class="set-age">Set Random Age</button>
     </div>
     `;
   }
@@ -39,6 +54,8 @@ export class UserForm {
   }
 
   render() {
+    this.parent.innerHTML = '';
+
     const template = document.createElement('template');
     template.innerHTML = this.template();
     this.bindEvents(template.content);
