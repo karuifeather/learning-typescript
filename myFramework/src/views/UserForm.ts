@@ -1,12 +1,18 @@
+import { User, UserProps } from '../models/User';
 import { View } from './View';
 
-export class UserForm extends View {
+export class UserForm extends View<User, UserProps> {
   eventsMap(): { [key: string]: () => void } {
     return {
       'click:.set-age': this.onSetAge,
       'click:.set-name': this.onSetName,
+      'click:.save': this.onSaveClick,
     };
   }
+
+  onSaveClick = (): void => {
+    this.model.save();
+  };
 
   onSetName = (): void => {
     const input = this.parent.querySelector('input');
@@ -25,12 +31,10 @@ export class UserForm extends View {
   template(): string {
     return `
     <div>
-      <h1>User Form</h1>
-      <h2>Name: ${this.model.get('name')}</h2>
-      <h2>Age: ${this.model.get('age')}</h2>
-      <input/>
+      <input value="${this.model.get('name')}"/>
       <button class="set-name">Change Name</button>
       <button class="set-age">Set Random Age</button>
+      <button class="save">Save</button>
     </div>
     `;
   }
