@@ -1,12 +1,6 @@
-import { User } from '../models/User';
+import { View } from './View';
 
-export class UserForm {
-  constructor(public parent: Element, public model: User) {
-    this.model.on('change', (): void => {
-      this.render();
-    });
-  }
-
+export class UserForm extends View {
   eventsMap(): { [key: string]: () => void } {
     return {
       'click:.set-age': this.onSetAge,
@@ -39,27 +33,5 @@ export class UserForm {
       <button class="set-age">Set Random Age</button>
     </div>
     `;
-  }
-
-  bindEvents(fragment: DocumentFragment): void {
-    const eventsMap = this.eventsMap();
-
-    for (let eventKey in eventsMap) {
-      const [event, selector] = eventKey.split(':');
-
-      fragment.querySelectorAll(selector).forEach((element: Element) => {
-        element.addEventListener(event, eventsMap[eventKey]);
-      });
-    }
-  }
-
-  render() {
-    this.parent.innerHTML = '';
-
-    const template = document.createElement('template');
-    template.innerHTML = this.template();
-    this.bindEvents(template.content);
-
-    this.parent.append(template.content);
   }
 }
