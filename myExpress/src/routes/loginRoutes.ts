@@ -10,21 +10,7 @@ const protect = (req: Request, res: Response, next: NextFunction): void => {
   res.status(403).send(`<h2>Forbidden.</h2>`);
 };
 
-router.get('/login', (req: Request, res: Response) => {
-  res.send(`
-    <form method="POST">
-      <div>
-        <label>Email</label>
-        <input type="email" name="email"/>
-      </div>
-      <div>
-        <label>Password</label>
-        <input type="password" name="password"/>
-      </div>
-      <button type="submit">Submit</button>
-    </form>
-  `);
-});
+router;
 
 router.post('/login', (req: Request, res: Response) => {
   const { email, password } = req.body;
