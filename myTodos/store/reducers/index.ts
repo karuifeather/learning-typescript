@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux';
-import { postReducer } from './postReducer';
+import { todosReducer, TodosState } from './todosReducer';
 
-export default combineReducers({
-  post: postReducer,
+export interface StoreState {
+  todos: TodosState;
+}
+
+export default combineReducers<StoreState>({
+  todos: todosReducer,
 });
